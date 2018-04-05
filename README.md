@@ -1,5 +1,5 @@
 # django-emailviews
-[![Build Status](https://travis-ci.org/Bukowa/django-emailviews.svg?branch=master)](https://travis-ci.org/Bukowa/django-emailviews) [![codecov](https://codecov.io/gh/Bukowa/django-emailviews/branch/master/graph/badge.svg)](https://codecov.io/gh/Bukowa/django-emailviews)
+[![Build Status](https://travis-ci.org/bukowa/django-emailviews.svg?branch=master)](https://travis-ci.org/bukowa/django-emailviews) [![codecov](https://codecov.io/gh/bukowa/django-emailviews/branch/master/graph/badge.svg)](https://codecov.io/gh/bukowa/django-emailviews)
  http://django-emailviews.readthedocs.io/en/latest/<br>
  ````
 pip install git+https://github.com/bukowa/django-emailviews

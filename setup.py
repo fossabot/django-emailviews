@@ -13,6 +13,8 @@ from os import path
 
 here = path.abspath(path.dirname(__file__))
 
+with open(path.join(here, 'README.md')) as fh:
+    long_description = fh.read()
 
 # Arguments marked as "Required" below must be included for upload to PyPI.
 # Fields marked as "Optional" may be commented out.
@@ -42,8 +44,10 @@ setup(
     # This is a one-line description or tagline of what your project does. This
     # corresponds to the "Summary" metadata field:
     # https://packaging.python.org/specifications/core-metadata/#summary
-    description='Provides simple email views.',  # Required
-
+    description='Provides views for sending emails. Only 2 classes.',  # Required
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    url="https://github.com/disqus/django-mailviews",
     # This should be a valid link to your project's main homepage.
     #
     # This field corresponds to the "Home-Page" metadata field:
@@ -52,39 +56,36 @@ setup(
 
     # This should be your name or the name of the organization which owns the
     # project.
-    # author='The Python Packaging Authority',  # Optional
+    author='Mateusz Kurowski',  # Optional
 
     # This should be a valid email address corresponding to the author listed
     # above.
     # author_email='pypa-dev@googlegroups.com',  # Optional
-
+    license='The Unlicense',
     # Classifiers help users find your project by categorizing it.
     #
     # For a list of valid classifiers, see
     # https://pypi.python.org/pypi?%3Aaction=list_classifiers
-    # classifiers=[  # Optional
-    #     # How mature is this project? Common values are
-    #     #   3 - Alpha
-    #     #   4 - Beta
-    #     #   5 - Production/Stable
-    #     'Development Status :: 3 - Alpha',
-    #
-    #     # Indicate who your project is intended for
-    #     'Intended Audience :: Developers',
-    #     'Topic :: Software Development :: Build Tools',
-    #
-    #     # Pick your license as you wish
-    #     'License :: OSI Approved :: MIT License',
-    #
-    #     # Specify the Python versions you support here. In particular, ensure
-    #     # that you indicate whether you support Python 2, Python 3 or both.
-    #     'Programming Language :: Python :: 2',
-    #     'Programming Language :: Python :: 2.7',
-    #     'Programming Language :: Python :: 3',
-    #     'Programming Language :: Python :: 3.4',
-    #     'Programming Language :: Python :: 3.5',
-    #     'Programming Language :: Python :: 3.6',
-    # ],
+    classifiers=[  # Optional
+        # How mature is this project? Common values are
+        #   3 - Alpha
+        #   4 - Beta
+        #   5 - Production/Stable
+        'Environment :: Web Environment',
+        'Framework :: Django',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python',
+        'Topic :: Software Development :: Libraries :: Application Frameworks',
+
+        # Specify the Python versions you support here. In particular, ensure
+        # that you indicate whether you support Python 2, Python 3 or both.
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+    ],
 
     # This field adds keywords for your project which will appear on the
     # project page. What does your project relate to?

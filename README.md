@@ -215,3 +215,5 @@ class ValidateActivationEmailView(ActivationEmailViewMixin, TemplateView):
         return super().get(request, *args, **kwargs)  
   
 ````
+# TODO
+2.1a1 blocker: https://code.djangoproject.com/ticket/29324

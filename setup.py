@@ -47,7 +47,7 @@ setup(
     description='Provides views for sending emails. Only 2 classes.',  # Required
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/disqus/django-emailviews",
+    url="https://github.com/bukowa/django-emailviews",
     # This should be a valid link to your project's main homepage.
     #
     # This field corresponds to the "Home-Page" metadata field:

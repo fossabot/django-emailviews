@@ -13,6 +13,7 @@ class SendEmailMixin:
     ``email_subject_template`` and ``email_body_template``
     as paths to the templates.\n
     """
+
     email_subject_template = None
     email_body_template = None
 
@@ -27,7 +28,7 @@ class SendEmailMixin:
         message = self.get_email_message(context)
         subject = self.get_email_subject(context)
         # single line to avoid header-injection issues
-        subject = ''.join(subject.splitlines())
+        subject = "".join(subject.splitlines())
         return send_mail(
             subject=subject,
             message=message,
@@ -68,9 +69,7 @@ class ActivationEmailViewMixin(SendEmailMixin):
     def send_email(self, from_email, to_email, context=None, **kwargs):
         context = context or {}
         # update context with 'root_url'
-        context.update(
-            self.get_request_root_url(),
-        )
+        context.update(self.get_request_root_url())
         return super().send_email(from_email, to_email, context, **kwargs)
 
     def get_request_root_url(self):
@@ -81,20 +80,15 @@ class ActivationEmailViewMixin(SendEmailMixin):
 
         {{root_url}}{% url 'activation' activation_key=activation_key %}
         """
-        scheme = 'https' if self.request.is_secure() else 'http'
+        scheme = "https" if self.request.is_secure() else "http"
         site = get_current_site(self.request)
-        return {
-            'root_url': '%s://%s' % (scheme, site)
-        }
+        return {"root_url": "%s://%s" % (scheme, site)}
 
     def generate_activation_key(self, value: str) -> str:
         """
         Generates activation key via django.core.signing.dumps_.
         """
-        return signing.dumps(
-            obj=value,
-            salt=self.get_salt(),
-        )
+        return signing.dumps(obj=value, salt=self.get_salt())
 
     def validate_activation_key(self, key: str) -> str or None:
         """
@@ -104,9 +98,7 @@ class ActivationEmailViewMixin(SendEmailMixin):
         """
         try:
             value = signing.loads(
-                s=key,
-                salt=self.get_salt(),
-                max_age=self.get_max_age(),
+                s=key, salt=self.get_salt(), max_age=self.get_max_age()
             )
             return value
         # SignatureExpired is a subclass of BadSignature,

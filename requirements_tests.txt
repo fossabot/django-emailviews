@@ -1,4 +1,5 @@
-hypothesis==3.52.1
-coverage
-flake8
-codecov
+hypothesis
+pytest
+pytest-django
+pytest-xdist
+pytest-cov

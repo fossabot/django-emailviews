@@ -1,13 +1,12 @@
 from django.core import mail
-from django.test import Client
 from django.urls import reverse
-from hypothesis import settings
+from hypothesis import settings, given, HealthCheck
 
-from . import factories as ft
 from . import views
+from .factories import Builds as bd
 
-# defines max_examples for each hypothesis based test
-max_examples = settings(max_examples=20)
+# defines hyposettings for each hypothesis based test
+hyposettings = settings(max_examples=20, suppress_health_check=[HealthCheck.too_slow])
 
 
 class BaseEmailTestCase:
@@ -45,10 +44,6 @@ class BaseEmailTestCase:
     # or its just an activation view?
     SENDS_EMAIL = None
 
-    def setUp(self):
-        mail.outbox = []
-        self.client = Client()
-
     ##############################################
     # ------------------HELPERS----------------- #
     ##############################################
@@ -65,22 +60,15 @@ class BaseEmailTestCase:
         Get response of the
         current view.
         """
-        return self.client.get(
-            reverse(
-                self.URL_NAME,
-                kwargs=kwargs or self.URL_KWARGS
-            )
-        )
+        return self.client.get(reverse(self.URL_NAME, kwargs=kwargs or self.URL_KWARGS))
 
     def get_post_response(self, data):
         """
         Send a post request
         with given data to the view.
         """
-        return self.client.post(
-            reverse(self.URL_NAME),
-            data=data,
-        )
+        return self.client.post(reverse(self.URL_NAME), data=data)
+
     ##############################################
     # ------------------TESTS--------------------#
     ##############################################
@@ -99,13 +87,10 @@ class BaseEmailTestCase:
         renders ``self.VIEW_CLASS``
         """
         resp = self.get_response()
-        self.assertIsInstance(
-            resp.context['view'],
-            self.VIEW_CLASS
-        )
+        self.assertIsInstance(resp.context["view"], self.VIEW_CLASS)
 
-    @max_examples
-    @ft.given_form_data
+    @hyposettings
+    @given(bd.form_data())
     def test_view_can_send_email(self, form_data):
         """
         Check if our view sends
@@ -113,15 +98,11 @@ class BaseEmailTestCase:
         """
         if self.SENDS_EMAIL is False:
             self.skipTest(
-                'Our view does not send an email. '
-                'It may be just an activation view.'
+                "Our view does not send an email. " "It may be just an activation view."
             )
         # send a valid post request that
         # should run ``form_valid`` method
         # on the view and send an email
         self.get_post_response(form_data)
 
-        self.assertEqual(
-            len(mail.outbox),
-            1
-        )
+        self.assertEqual(len(mail.outbox), 1)

@@ -12,7 +12,7 @@ def builds_email(**kwargs):
         ),
     )
     defaults.update(kwargs)
-    return st.builds(lambda hostname, domain: f"{hostname}@{domain}.cOm", **defaults)
+    return st.builds(lambda hostname, domain: "%s@%s.cOm" % (hostname, domain), **defaults)
 
 
 class Builds:

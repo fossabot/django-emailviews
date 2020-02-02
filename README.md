@@ -1,5 +1,6 @@
 # django-emailviews  
-[![Build Status](https://travis-ci.org/bukowa/django-emailviews.svg?branch=master)](https://travis-ci.org/bukowa/django-emailviews) [![codecov](https://codecov.io/gh/bukowa/django-emailviews/branch/master/graph/badge.svg)](https://codecov.io/gh/bukowa/django-emailviews)<br>
+[![Build Status](https://travis-ci.org/bukowa/django-emailviews.svg?branch=master)](https://travis-ci.org/bukowa/django-emailviews) [![codecov](https://codecov.io/gh/bukowa/django-emailviews/branch/master/graph/badge.svg)](https://codecov.io/gh/bukowa/django-emailviews)[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbukowa%2Fdjango-emailviews.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fbukowa%2Fdjango-emailviews?ref=badge_shield)
+<br>
  http://django-emailviews.readthedocs.io/en/latest/<br>
  ````  
 pip install git+https://github.com/bukowa/django-emailviews  
@@ -213,3 +214,6 @@ class ValidateActivationEmailView(ActivationEmailViewMixin, TemplateView):
 ````
 # TODO
 2.1a1 blocker: https://code.djangoproject.com/ticket/29324
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fbukowa%2Fdjango-emailviews.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fbukowa%2Fdjango-emailviews?ref=badge_large)
